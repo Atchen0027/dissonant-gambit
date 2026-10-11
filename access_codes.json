@@ -1,6 +1,5 @@
 {
   "available": [
-    "BE3HZ9665F85TQ9ERQ0CNYK",
     "8MP1ASMWSG7A013271S2YCB",
     "M29C94QHA9S1D5YWNNHFRHM",
     "A2JLKA63BE1L6WAU1FBPTGD",
@@ -111,7 +110,14 @@
     "FEUTETBUYKP496GYLKFB76N",
     "BFBC81ES2WS31RPJGWAAAVS"
   ],
-  "claimed": {},
+  "claimed": {
+    "acen0027@gmail.com": [
+      {
+        "code": "BE3HZ9665F85TQ9ERQ0CNYK",
+        "timestamp": "2026-10-11T18:49:40.293329Z"
+      }
+    ]
+  },
   "burned_codes": [
     "WDN016Y1Q5TM3HYKKQ78YB2"
   ]

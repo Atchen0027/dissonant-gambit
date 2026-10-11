@@ -2082,6 +2082,7 @@ section {
 }
 
 .herald-portrait-wrapper {
+  position: relative;
   width: 72px;
   height: 72px;
   border-radius: 50%;
@@ -2112,6 +2113,73 @@ section {
 
 .herald-card:hover .herald-portrait-img {
   transform: scale(1.12);
+}
+
+/* Distorsión y velo de misterio a partir del Heraldo 3 */
+.herald-portrait-wrapper.shrouded {
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 0 16px rgba(147, 51, 234, 0.4), inset 0 0 12px rgba(0, 0, 0, 0.95);
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, rgba(4, 5, 12, 0.96) 85%);
+}
+
+.herald-portrait-wrapper.shrouded .herald-portrait-img {
+  filter: blur(8px) brightness(0.22) contrast(190%) saturate(140%) hue-rotate(270deg);
+  transform: scale(1.22);
+  opacity: 0.55;
+  user-select: none;
+  pointer-events: none;
+}
+
+.herald-card:hover .herald-portrait-wrapper.shrouded .herald-portrait-img {
+  filter: blur(6px) brightness(0.28) contrast(200%) saturate(160%) hue-rotate(280deg);
+  transform: scale(1.28);
+  opacity: 0.65;
+}
+
+.shroud-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(10, 10, 22, 0.4) 0%, rgba(3, 4, 10, 0.88) 85%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.shroud-symbol {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold-light);
+  line-height: 1;
+  text-shadow:
+    0 0 8px rgba(251, 191, 36, 0.9),
+    0 0 20px rgba(239, 68, 68, 0.7),
+    0 0 35px rgba(168, 85, 247, 0.7);
+  animation: shroudGlowPulse 2.4s ease-in-out infinite alternate;
+}
+
+.herald-card.final-boss .herald-portrait-wrapper.shrouded .shroud-symbol {
+  font-size: 2.9rem;
+  color: #fde68a;
+  text-shadow:
+    0 0 12px rgba(251, 191, 36, 1),
+    0 0 28px rgba(239, 68, 68, 0.9),
+    0 0 45px rgba(168, 85, 247, 0.9);
+}
+
+@keyframes shroudGlowPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.82;
+    text-shadow: 0 0 6px rgba(251, 191, 36, 0.7), 0 0 14px rgba(168, 85, 247, 0.4);
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 1;
+    text-shadow: 0 0 16px rgba(251, 191, 36, 1), 0 0 30px rgba(239, 68, 68, 0.9), 0 0 44px rgba(168, 85, 247, 0.85);
+  }
 }
 
 .herald-name {
@@ -2158,6 +2226,376 @@ section {
   font-family: var(--font-pixel);
   font-size: 0.65rem;
   margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   MODULE 2.5: PIEZAS DISONANTES (BESTIARIO DEL VACÍO)
+   ========================================================================== */
+
+.pieces-section {
+  position: relative;
+  padding: 80px 0;
+  background: radial-gradient(circle at 50% 10%, rgba(88, 28, 135, 0.18) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(225, 29, 72, 0.08) 0%, transparent 50%),
+              rgba(6, 8, 16, 0.95);
+  border-top: 1px solid rgba(168, 85, 247, 0.3);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* Banner de Frase Destacada Requerida */
+.pieces-quote-banner {
+  max-width: 860px;
+  margin: 28px auto 0;
+  padding: 28px 36px;
+  background: linear-gradient(135deg, rgba(22, 16, 42, 0.92) 0%, rgba(10, 12, 26, 0.96) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 35px rgba(147, 51, 234, 0.22), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  position: relative;
+  text-align: center;
+}
+
+.quote-symbol-crest {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7));
+}
+
+.pieces-core-quote {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.5;
+  margin: 0 0 12px;
+  text-shadow: 0 0 15px rgba(251, 191, 36, 0.35);
+  letter-spacing: 0.5px;
+}
+
+.pieces-quote-sub {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Censo y Desglose de Rareza */
+.pieces-census-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 36px auto 44px;
+  padding: 16px 24px;
+  background: rgba(12, 16, 32, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+}
+
+.census-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.census-number {
+  font-family: var(--font-pixel);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 15px var(--gold-glow);
+}
+
+.census-label {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.census-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.census-rarity-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rarity-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pill-common {
+  background: rgba(148, 163, 184, 0.15);
+  border-color: rgba(148, 163, 184, 0.4);
+  color: #cbd5e1;
+}
+
+.pill-rare {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #93c5fd;
+}
+
+.pill-epic {
+  background: rgba(168, 85, 247, 0.18);
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #d8b4fe;
+}
+
+.pill-legendary {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.6);
+  color: #fde68a;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+/* Grid de Showcase de 3 Piezas */
+.pieces-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.piece-card {
+  background: rgba(12, 17, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.piece-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
+}
+
+.piece-card.featured-soul-thief {
+  border-color: rgba(59, 130, 246, 0.45);
+}
+.piece-card.featured-soul-thief:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.3);
+}
+
+.piece-card.featured-storm-mage {
+  border-color: rgba(168, 85, 247, 0.45);
+}
+.piece-card.featured-storm-mage:hover {
+  border-color: #c084fc;
+  box-shadow: 0 18px 45px rgba(147, 51, 234, 0.3);
+}
+
+.piece-card.featured-sapper {
+  border-color: rgba(239, 68, 68, 0.45);
+}
+.piece-card.featured-sapper:hover {
+  border-color: #f87171;
+  box-shadow: 0 18px 45px rgba(239, 68, 68, 0.3);
+}
+
+.piece-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.piece-rarity-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.piece-rarity-tag.rarity-rare {
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(59, 130, 246, 0.6);
+  color: #93c5fd;
+}
+
+.piece-rarity-tag.rarity-common {
+  background: rgba(249, 115, 22, 0.18);
+  border: 1px solid rgba(249, 115, 22, 0.6);
+  color: #fdba74;
+}
+
+.piece-origin-year {
+  font-family: var(--font-pixel);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* Contenedor Visual de la Pieza */
+.piece-visual-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.piece-aura-bg {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  filter: blur(24px);
+  z-index: 1;
+}
+
+.soul-aura {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.6) 0%, rgba(37, 99, 235, 0.2) 70%, transparent 100%);
+}
+
+.storm-aura {
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.65) 0%, rgba(147, 51, 234, 0.2) 70%, transparent 100%);
+}
+
+.sapper-aura {
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.65) 0%, rgba(220, 38, 38, 0.2) 70%, transparent 100%);
+}
+
+.piece-sprite-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.85));
+  transition: transform var(--transition-fast);
+}
+
+.piece-card:hover .piece-sprite-img {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.piece-floating-symbol {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+  animation: floatPulse 3s ease-in-out infinite;
+}
+
+@keyframes floatPulse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.piece-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.piece-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.piece-identity {
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.piece-lore {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* Tarjeta de Mecánica Disonante */
+.piece-rule-break {
+  margin-top: auto;
+  background: rgba(6, 8, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.rule-break-title {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.rule-break-desc {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rule-break-desc strong {
+  color: #fff;
+}
+
+/* Banner Inferior de Arsenal */
+.pieces-footer-callout {
+  max-width: 960px;
+  margin: 44px auto 0;
+  background: linear-gradient(135deg, rgba(20, 16, 38, 0.85) 0%, rgba(10, 12, 24, 0.95) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.callout-pill {
+  display: inline-block;
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
 }
 
 /* ==========================================================================
@@ -3166,6 +3604,46 @@ section {
   .footer-top > div:last-child {
     justify-content: center;
   }
+
+  /* Piezas Disonantes Mobile */
+  .pieces-section {
+    padding: 50px 14px !important;
+  }
+  .pieces-quote-banner {
+    padding: 22px 16px !important;
+    margin: 20px auto 0 !important;
+  }
+  .pieces-core-quote {
+    font-size: 1.1rem !important;
+  }
+  .pieces-census-strip {
+    gap: 16px !important;
+    padding: 16px 14px !important;
+    margin: 24px auto 32px !important;
+  }
+  .census-divider {
+    display: none !important;
+  }
+  .pieces-showcase-grid {
+    grid-template-columns: 1fr !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+  }
+  .piece-card {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .piece-card-header {
+    width: 100% !important;
+  }
+  .rule-break-title {
+    justify-content: center !important;
+  }
+  .pieces-footer-callout {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 22px 18px !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3181,6 +3659,12 @@ section {
   }
   .avatars-strip-grid {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .pieces-core-quote {
+    font-size: 0.98rem !important;
+  }
+  .piece-name {
+    font-size: 1.2rem !important;
   }
 }
 
