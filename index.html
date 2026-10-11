@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Best Practices -->
+  <title>Dissonant Gambit (Roge_chest) | ¿Podrás ser el Rey del Ajedrez en el Enroque Muerto?</title>
+  <meta name="description" content="¿Podrás ser el Rey del Ajedrez en el Enroque Muerto? Descubre Dissonant Gambit (Roge_chest) para Android. Modo historia de 12 capítulos contra 12 heraldos, 8 modos de juego, multijugador online, contra IA y local en el mismo móvil, skins y avatares míticos.">
+  <meta name="keywords" content="Dissonant Gambit, Roge_chest, ajedrez roguelike, el enroque muerto, 12 heraldos, multijugador local ajedrez, pixel art android, atchendev">
+  <meta name="author" content="atchendev / NH Coders">
+  <meta property="og:title" content="Dissonant Gambit - ¿Podrás ser el Rey del Ajedrez en el Enroque Muerto?">
+  <meta property="og:description" content="Modo historia de 12 capítulos, 12 heraldos, 8 modos de juego, multijugador online, IA y local en el mismo teléfono. ¡Pre-regístrate en Google Play!">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/app_logo.jpg">
+
+  <!-- Google Fonts: Cinzel, Space Grotesk, JetBrains Mono, Press Start 2P, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Press+Start+2P&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient CRT Overlay (Toggleable) -->
+  <div id="crt-overlay" class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- Particle / Stardust Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- ====================================================================
+         NAVIGATION BAR
+         ==================================================================== -->
+    <header class="nav-header">
+      <div class="nav-container">
+        <a href="#hero" class="brand-wrapper" id="nav-brand-link">
+          <img src="assets/app_logo.jpg" alt="Logo Dissonant Gambit" class="brand-crest">
+          <div class="brand-text-col">
+            <span class="brand-title">DISSONANT GAMBIT</span>
+            <span class="brand-subtitle">ROGE_CHEST • DARK FANTASY CHESS</span>
+          </div>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <ul class="nav-links">
+            <li><a href="#historia" class="nav-link"><span>⚔️</span> 12 Heraldos</a></li>
+            <li><a href="#modos" class="nav-link"><span>🏆</span> 8 Modos</a></li>
+            <li><a href="#multijugador" class="nav-link"><span>🌐</span> Multijugador</a></li>
+            <li><a href="#personalizacion" class="nav-link"><span>👑</span> Skins & Avatares</a></li>
+            <li><a href="#acceso-anticipado" class="nav-link" style="color: var(--gold-light);"><span>🔑</span> Acceso Anticipado</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button id="nav-crt-btn" class="nav-icon-btn active" title="Alternar efecto CRT Scanlines" aria-label="Alternar CRT">
+            📺
+          </button>
+          <a href="#acceso-anticipado" class="btn-pre-register" id="nav-pre-register-btn">
+            <span>🔑</span> Acceso Gratis
+          </a>
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle-btn" aria-label="Abrir menú de navegación">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="site-content">
+
+      <!-- ====================================================================
+           MODULE 1: HERO SECTION
+           ==================================================================== -->
+      <section id="hero" class="hero-section">
+        <div class="hero-grid">
+          
+          <div class="hero-content-col">
+            
+            <!-- App Logo & Tagline Emblem -->
+            <div class="hero-logo-emblem">
+              <img src="assets/app_logo.jpg" alt="Icono oficial de Roge_chest" class="hero-main-logo-img">
+              <div class="hero-logo-tagline-col">
+                <span class="hero-tagline-badge">ACCESO ANTICIPADO DISPONIBLE // ANDROID</span>
+                <span class="hero-studio-name">DISSONANT GAMBIT • POR ATCHENDEV</span>
+              </div>
+            </div>
+
+            <!-- Title oriented to: Podrás ser el rey del ajedrez en el enroque muerto? -->
+            <h1 class="hero-title">
+              ¿PODRÁS SER EL REY DEL AJEDREZ
+              <span>EN EL ENROQUE MUERTO?</span>
+            </h1>
+
+            <p class="hero-description">
+              El tablero clásico de 64 casillas ha colapsado. Adéntrate en el misterio del Enroque Muerto: enfréntate a <strong>12 Heraldos implacables</strong> a lo largo de <strong>12 capítulos de campaña</strong>, domina <strong>8 modos de juego</strong>, compite online o cara a cara en el mismo teléfono, y <strong>alcanza hasta 4 finales diferentes</strong> según la maestría de tus decisiones tácticas.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#acceso-anticipado" class="btn-primary-hero" id="hero-cta-preregister">
+                <span>🔑</span> Únete ya al Acceso Anticipado Gratis
+              </a>
+
+              <a href="#historia" class="btn-secondary-hero" id="hero-cta-story">
+                <span>📖</span> Descubrir los 12 Heraldos
+              </a>
+            </div>
+
+            <div class="hero-stats-bar">
+              <div class="hero-stat-item">
+                <span class="stat-value">12</span>
+                <span class="stat-label">Capítulos & Heraldos</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="stat-value">8</span>
+                <span class="stat-label">Modos de Juego</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="stat-value">3</span>
+                <span class="stat-label">Vías Multijugador</span>
+              </div>
+              <div class="hero-stat-item">
+                <span class="stat-value">50+</span>
+                <span class="stat-label">Trofeos & Skins</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Mockup Frame with Real App Screenshot -->
+          <div class="hero-mockup-wrapper">
+            <div class="mockup-aura"></div>
+
+            <!-- Floating Arcane Badges -->
+            <div class="floating-rune-card top-right">
+              <div class="rune-card-icon">👑</div>
+              <div class="rune-card-text">
+                <span class="rune-card-title">12 Heraldos Cósmicos</span>
+                <span class="rune-card-sub">Desafía al Soberano</span>
+              </div>
+            </div>
+
+            <div class="floating-rune-card bottom-left">
+              <div class="rune-card-icon">📱</div>
+              <div class="rune-card-text">
+                <span class="rune-card-title">Mismo Teléfono</span>
+                <span class="rune-card-sub">Duelos Locales 2 Jugadores</span>
+              </div>
+            </div>
+
+            <!-- Smartphone Mockup Container -->
+            <div class="phone-device-frame">
+              <div class="phone-speaker-notch"></div>
+              <div class="phone-screen-viewport">
+                <img 
+                  id="mockup-img" 
+                  class="mockup-slide-img" 
+                  src="assets/screenshots/Screenshot_20261009_191958.png" 
+                  alt="Menú de Modos de Juego de Roge_chest"
+                >
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODULE 2: MODO HISTORIA (12 CAPÍTULOS, 12 HERALDOS Y EL JEFE FINAL)
+           ==================================================================== -->
+      <section id="historia" class="story-section">
+        <div class="section-header">
+          <span class="section-tag">CAMPAÑA ROGUELIKE PRINCIPAL</span>
+          <h2 class="section-title">12 CAPÍTULOS • 12 HERALDOS DEL VACÍO</h2>
+          <p class="section-desc">
+            En el plano del Enroque Muerto, el tiempo no es lineal. Supera cada círculo del purgatorio, doblega a sus 12 heraldos guardianes y gana el derecho a retar en el Gran Vértice al <strong>Soberano del Vacío</strong>.
+          </p>
+        </div>
+
+        <div class="heralds-grid">
+          
+          <!-- Heraldo 1 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO I</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_01_scarecrow.webp" alt="Espantapájaros de las Ruinas" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Espantapájaros</h3>
+            <span class="herald-title">Ruinas del Desván</span>
+          </div>
+
+          <!-- Heraldo 2 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO II</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_02_engineer.webp" alt="El Ingeniero" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Ingeniero</h3>
+            <span class="herald-title">Bastión Mecánico</span>
+          </div>
+
+          <!-- Heraldo 3 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO III</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_03_specter.webp" alt="El Espectro" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Espectro</h3>
+            <span class="herald-title">Cripta Silenciosa</span>
+          </div>
+
+          <!-- Heraldo 4 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO IV</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_04_abbot.webp" alt="El Abad de la Herejía" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Abad</h3>
+            <span class="herald-title">Templo Hereje</span>
+          </div>
+
+          <!-- Heraldo 5 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO V</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_05_merchant.webp" alt="El Mercader de Sangre" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Mercader</h3>
+            <span class="herald-title">Bazar Etéreo</span>
+          </div>
+
+          <!-- Heraldo 6 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO VI</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_06_inquisitor.webp" alt="El Inquisidor de la Fe" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Inquisidor</h3>
+            <span class="herald-title">Tribunal de Ceniza</span>
+          </div>
+
+          <!-- Heraldo 7 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO VII</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_07_general.webp" alt="El General de Hierro" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El General</h3>
+            <span class="herald-title">Fortaleza de Acero</span>
+          </div>
+
+          <!-- Heraldo 8 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO VIII</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_08_sorcerer.webp" alt="El Brujo Oscuro" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">El Brujo</h3>
+            <span class="herald-title">Catacumbas Negras</span>
+          </div>
+
+          <!-- Heraldo 9 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO IX</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_09_ash_lord.webp" alt="Señor de las Cenizas" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">Señor Ceniza</h3>
+            <span class="herald-title">Caldera del Dragón</span>
+          </div>
+
+          <!-- Heraldo 10 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO X</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_10_doppelganger.webp" alt="El Doppelgänger" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">Doppelgänger</h3>
+            <span class="herald-title">Laberinto Espejo</span>
+          </div>
+
+          <!-- Heraldo 11 -->
+          <div class="herald-card">
+            <span class="herald-chapter-tag">CAPÍTULO XI</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_11_chronomancer.webp" alt="El Cronoterapeuta" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">Cronoterapeuta</h3>
+            <span class="herald-title">Vórtice Temporal</span>
+          </div>
+
+          <!-- Heraldo 12 (Jefe Final - Colosal) -->
+          <div class="herald-card final-boss">
+            <span class="herald-chapter-tag">★ CAPÍTULO XII • EL GRAN VÉRTICE</span>
+            <div class="herald-portrait-wrapper">
+              <img src="assets/characters/rival_12_void_monarch.webp" alt="El Soberano del Vacío" class="herald-portrait-img">
+            </div>
+            <h3 class="herald-name">EL SOBERANO DEL VACÍO</h3>
+            <span class="herald-title" style="color: #fde68a;">JEFE FINAL • MONARCA DEL ENROQUE MUERTO</span>
+          </div>
+
+        </div>
+
+        <!-- Banner de Ascensión -->
+        <div class="story-summary-banner">
+          <div>
+            <div class="story-badge-highlight">
+              <span>👑</span> LA SENDA HACIA LA CÚSPIDE
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff; margin-bottom: 12px;">
+              Llega a lo más alto y gana el derecho al duelo final
+            </h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7;">
+              Ningún mortal puede saltarse la jerarquía de las casillas. Para enfrentarte al <strong>Soberano del Vacío</strong> deberás demostrar maestría posicional, evolucionar tus piezas en la forja y derrotar a cada uno de sus once heraldos guardianes. La victoria otorga la salvación de las almas atrapadas; el fallo te condenará a ser una pieza más en su colección eterna.
+            </p>
+          </div>
+
+          <div style="background: rgba(5, 8, 17, 0.8); border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 24px; text-align: center;">
+            <span style="font-family: var(--font-pixel); font-size: 0.72rem; color: var(--gold-light); display: block; margin-bottom: 8px;">
+              ESTRUCTURA DE CAMPAÑA
+            </span>
+            <div style="font-size: 2.2rem; font-weight: 800; color: #fff; margin-bottom: 4px;">
+              12 ACTOS
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.8rem;">
+              Cinemáticas oscuras, diálogos narrativos completos y finales alternativos según las almas que liberes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODULE 3: 8 MODOS DE JUEGO (CON DESCRIPCIÓN BREVE)
+           ==================================================================== -->
+      <section id="modos" class="modes-section">
+        <div class="section-header">
+          <span class="section-tag">REJUGABILIDAD TÁCTICA ILIMITADA</span>
+          <h2 class="section-title">8 MODOS DE JUEGO EXCLUSIVOS</h2>
+          <p class="section-desc">
+            Dissonant Gambit redefine las posibilidades de un tablero con ocho formas distintas de competir, entrenar y dominar las casillas.
+          </p>
+        </div>
+
+        <div class="modes-grid">
+          
+          <!-- 1. Modo Historia -->
+          <div class="mode-card">
+            <span class="mode-badge-top">CAMPAÑA</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_historia.jpg" alt="Icono Modo Historia" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">1. Modo Historia</h3>
+            <p class="mode-desc">
+              <strong>Campaña Principal:</strong> Avanza a través de 12 actos narrativos derrotando a los 12 heraldos hasta alcanzar el trono del Soberano del Vacío.
+            </p>
+          </div>
+
+          <!-- 2. Puzles Tácticos -->
+          <div class="mode-card">
+            <span class="mode-badge-top">ACADEMIA</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_puzles.jpg" alt="Icono Puzles Tácticos" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">2. Puzles Tácticos</h3>
+            <p class="mode-desc">
+              <strong>20 Desafíos de Jaque:</strong> Situaciones límite de 1 a 3 turnos para aprender los saltos de asalto, trampas de zapador y combos de teletransporte.
+            </p>
+          </div>
+
+          <!-- 3. La Gran Batalla -->
+          <div class="mode-card">
+            <span class="mode-badge-top">TABLERO 10x7</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_batalla.jpg" alt="Icono La Gran Batalla" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">3. La Gran Batalla</h3>
+            <p class="mode-desc">
+              <strong>Guerra a Gran Escala:</strong> Un colosal tablero expandido de 70 casillas con doble frente de vanguardia y mayor espacio de maniobra táctica.
+            </p>
+          </div>
+
+          <!-- 4. Modo Exterminio -->
+          <div class="mode-card">
+            <span class="mode-badge-top">SIN REY</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_exterminio.jpg" alt="Icono Modo Exterminio" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">4. Modo Exterminio</h3>
+            <p class="mode-desc">
+              <strong>Guerra Total:</strong> No hay rey que proteger ni que dar jaque mate. La partida termina cuando erradicas hasta la última ficha enemiga.
+            </p>
+          </div>
+
+          <!-- 5. Guerra de Pintura -->
+          <div class="mode-card">
+            <span class="mode-badge-top">TERRITORIO</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_pintura.jpg" alt="Icono Guerra de Pintura" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">5. Guerra de Pintura</h3>
+            <p class="mode-desc">
+              <strong>Control Zonal:</strong> Cada movimiento tiñe las casillas con tu energía arcana. Quien conquiste el mayor porcentaje de superficie gana la ronda.
+            </p>
+          </div>
+
+          <!-- 6. Combate Rápido -->
+          <div class="mode-card">
+            <span class="mode-badge-top">VS IA DIRECTA</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_rapido.jpg" alt="Icono Combate Rápido" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">6. Combate Rápido</h3>
+            <p class="mode-desc">
+              <strong>Escaramuzas Express:</strong> Partidas instantáneas de 3 minutos contra la inteligencia artificial calibrada según tu nivel de habilidad.
+            </p>
+          </div>
+
+          <!-- 7. Ajedrez Clásico -->
+          <div class="mode-card">
+            <span class="mode-badge-top">32 PIEZAS TRADICIONALES</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_clasico.jpg" alt="Icono Ajedrez Clásico" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">7. Ajedrez Clásico</h3>
+            <p class="mode-desc">
+              <strong>Las Reglas Milenarias:</strong> Disfruta del ajedrez estándar con las piezas clásicas bajo la ambientación gótica y el motor 2.5D de Roge_chest.
+            </p>
+          </div>
+
+          <!-- 8. Online 1v1 Clasificatorio -->
+          <div class="mode-card">
+            <span class="mode-badge-top">MULTIJUGADOR GLOBAL</span>
+            <div class="mode-icon-container">
+              <img src="assets/modes/mode_multiplayer.jpg" alt="Icono Duelos Online" class="mode-pixel-icon" loading="lazy">
+            </div>
+            <h3 class="mode-title">8. Duelos Online (1v1)</h3>
+            <p class="mode-desc">
+              <strong>Rango y Competición:</strong> Enfréntate a jugadores de todo el mundo, pon a prueba tus barajas de 16 piezas y asciende en la tabla de clasificación.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODULE 4: MULTIJUGADOR TOTAL (HUMANOS, IA Y LOCAL EN EL MISMO MÓVIL)
+           ==================================================================== -->
+      <section id="multijugador" class="multiplayer-section">
+        <div class="section-header">
+          <span class="section-tag">COMPITE COMO QUIERAS Y DONDE QUIERAS</span>
+          <h2 class="section-title">MULTIJUGADOR TOTAL & VERSUS</h2>
+          <p class="section-desc">
+            Juega contra estrategas del planeta, mide tu ingenio frente a la IA disonante o comparte el mismo smartphone con tus amigos en cualquier lugar.
+          </p>
+        </div>
+
+        <div class="multiplayer-grid">
+          
+          <!-- Opción 1: Contra Humanos Online -->
+          <div class="multiplayer-card online">
+            <div class="mp-icon-box">👥</div>
+            <h3 class="mp-title">Contra Humanos Online</h3>
+            <p class="mp-desc">
+              Conéctate a la red del Enroque Muerto para disputar partidas competitivas y amistosas en tiempo real contra comandantes de todo el mundo.
+            </p>
+            <ul class="mp-features-list">
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Matchmaking clasificatorio por ELO táctico
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Salas privadas con código para retar a tus amigos
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Duelo de barajas personalizadas de 16 fichas
+              </li>
+            </ul>
+          </div>
+
+          <!-- Opción 2: Contra IA Táctica -->
+          <div class="multiplayer-card ai">
+            <div class="mp-icon-box">🤖</div>
+            <h3 class="mp-title">Contra la Inteligencia Artificial</h3>
+            <p class="mp-desc">
+              Entrena y perfecciona tus aperturas contra algoritmos tácticos entrenados para castigar cualquier punto ciego y anticipar tus saltos.
+            </p>
+            <ul class="mp-features-list">
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> 5 Niveles de dificultad: desde Recluta hasta Gran Maestro
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Modos de personalidad: Agresiva, Defensiva o Caótica
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> 100% jugable offline sin conexión a internet
+              </li>
+            </ul>
+          </div>
+
+          <!-- Opción 3: Local en el Mismo Teléfono -->
+          <div class="multiplayer-card local">
+            <div class="mp-icon-box">📱</div>
+            <h3 class="mp-title">Local en el Mismo Teléfono</h3>
+            <p class="mp-desc">
+              El ajedrez social definitivo. Apoya tu teléfono sobre la mesa de la cafetería o el aula y juega partidas cara a cara en un solo dispositivo.
+            </p>
+            <ul class="mp-features-list">
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Modo «Pass & Play» con rotación de perspectiva táctica
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> No requiere internet, datos móviles ni cuentas
+              </li>
+              <li class="mp-feature-item">
+                <span class="mp-feature-check">✓</span> Ideal para resolver partidas cara a cara al instante
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODULE 5: PERSONALIZACIÓN, SKINS, LOGROS, TÍTULOS Y AVATARES
+           ==================================================================== -->
+      <section id="personalizacion" class="customization-section">
+        <div class="section-header">
+          <span class="section-tag">EL SELLO DEL COMANDANTE</span>
+          <h2 class="section-title">SKINS, AVATARES, TÍTULOS Y LOGROS</h2>
+          <p class="section-desc">
+            Forja tu propia identidad en el purgatorio. Desbloquea skins de oro, avatares míticos de perfil y colecciona más de 50 trofeos de maestría.
+          </p>
+        </div>
+
+        <div class="customization-showcase-box">
+          
+          <div class="customization-panels-grid">
+            
+            <div class="custom-card-group">
+              
+              <div class="custom-feature-card">
+                <div class="custom-feature-icon">✨</div>
+                <h4 class="custom-feature-title">Skins Exclusivas</h4>
+                <p class="custom-feature-desc">
+                  Ediciones Áureas de oro estelar, Momias Imperiales, aspectos Glaciales y armaduras de Obsidiana para tus 30 fichas.
+                </p>
+              </div>
+
+              <div class="custom-feature-card">
+                <div class="custom-feature-icon">🎖️</div>
+                <h4 class="custom-feature-title">Títulos de Rango</h4>
+                <p class="custom-feature-desc">
+                  Evoluciona tu estatus: desde «Recluta del Tablero» hasta «Estratega de Hierro», «Azote de Heraldos» y «Monarca del Abismo».
+                </p>
+              </div>
+
+              <div class="custom-feature-card">
+                <div class="custom-feature-icon">🏆</div>
+                <h4 class="custom-feature-title">50 Trofeos & Logros</h4>
+                <p class="custom-feature-desc">
+                  Completa retos arcanos: victorias sin perder piezas, jaques con peones, coronaciones triples y dominio territorial.
+                </p>
+              </div>
+
+              <div class="custom-feature-card">
+                <div class="custom-feature-icon">🪙</div>
+                <h4 class="custom-feature-title">Tienda del Mercader</h4>
+                <p class="custom-feature-desc">
+                  Gana monedas de oro en cada victoria para abrir cofres arcanos sellados y conseguir reliquias cosméticas legendarias.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- In-Game Profile Showcase -->
+            <div style="background: rgba(5, 8, 17, 0.9); border: 1px solid var(--border-gold); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-gothic); text-align: center;">
+              <div style="width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--gold-primary); margin: 0 auto 16px auto; overflow: hidden; box-shadow: 0 0 25px var(--gold-glow);">
+                <img src="assets/avatars/avatar_shadow_king.webp" alt="Avatar Rey de las Sombras" style="width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated;">
+              </div>
+              <h3 style="font-family: var(--font-display); font-size: 1.4rem; color: #fff; margin-bottom: 4px;">Comandante Estratega</h3>
+              <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--gold-light); background: rgba(245, 158, 11, 0.15); border: 1px solid var(--gold-primary); padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 16px;">
+                👑 MONARCA DEL ABISMO
+              </span>
+
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; background: rgba(16, 25, 53, 0.6); border-radius: 8px; padding: 14px; margin-bottom: 18px;">
+                <div>
+                  <span style="font-size: 1.1rem; font-weight: 800; color: var(--gold-light);">50 / 50</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted); display: block;">Trofeos</span>
+                </div>
+                <div>
+                  <span style="font-size: 1.1rem; font-weight: 800; color: var(--arcane-cyan);">24</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted); display: block;">Piezas Unlocked</span>
+                </div>
+                <div>
+                  <span style="font-size: 1.1rem; font-weight: 800; color: #6ee7b7;">99,475</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted); display: block;">Oro Acumulado</span>
+                </div>
+              </div>
+
+              <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">
+                Toda tu progresión se guarda de forma local o en la nube mediante tu cuenta de Google Play Juegos.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Strip de Avatares Míticos -->
+          <div class="avatars-strip-wrapper">
+            <h3 class="avatars-strip-title">
+              <span>👤</span> Avatares Míticos Desbloqueables
+            </h3>
+
+            <div class="avatars-strip-grid">
+              
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_shadow_king.webp" alt="Rey de las Sombras" class="avatar-strip-img">
+                <div class="avatar-strip-name">Rey de Sombras</div>
+                <div class="avatar-strip-tier">MÍTICO</div>
+              </div>
+
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_blood_queen.webp" alt="Reina de Sangre" class="avatar-strip-img">
+                <div class="avatar-strip-name">Reina Carmesí</div>
+                <div class="avatar-strip-tier">LEGENDARIO</div>
+              </div>
+
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_void_knight.webp" alt="Caballero del Vacío" class="avatar-strip-img">
+                <div class="avatar-strip-name">Caballero Vacío</div>
+                <div class="avatar-strip-tier">LEGENDARIO</div>
+              </div>
+
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_spectral_reaper.webp" alt="Segador Espectral" class="avatar-strip-img">
+                <div class="avatar-strip-name">Segador Espectral</div>
+                <div class="avatar-strip-tier">ÉPICO</div>
+              </div>
+
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_celestial_valkyrie.webp" alt="Valquiria Celestial" class="avatar-strip-img">
+                <div class="avatar-strip-name">Valquiria Celestial</div>
+                <div class="avatar-strip-tier">MÍTICO</div>
+              </div>
+
+              <div class="avatar-strip-card">
+                <img src="assets/avatars/avatar_plague_alchemist.webp" alt="Alquimista de la Peste" class="avatar-strip-img">
+                <div class="avatar-strip-name">Alquimista Peste</div>
+                <div class="avatar-strip-tier">RARO</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODULE 6: ÚNETE YA AL ACCESO ANTICIPADO DE FORMA GRATUITA
+           ==================================================================== -->
+      <section id="acceso-anticipado" class="cta-section">
+        <div class="early-access-banner">
+          
+          <div class="early-access-badge">
+            <span>🔑</span> CLAVES OFICIALES DE ACCESO ANTICIPADO
+          </div>
+
+          <h2 class="early-access-title">
+            ÚNETE YA AL ACCESO ANTICIPADO DE FORMA GRATUITA
+          </h2>
+
+          <p class="early-access-desc">
+            Introduce tu correo electrónico para recibir de forma inmediata una clave oficial de acceso anticipado en Google Play. Al pulsar el enlace, se abrirá la tienda con el código ya aplicado para que instales la app de inmediato.
+          </p>
+
+          <div class="counter-pill">
+            <span>⚡</span> <span id="keys-counter">10</span> claves disponibles en la forja
+          </div>
+
+          <!-- Claim Form -->
+          <form id="claim-form" class="cta-form">
+            <input 
+              type="email" 
+              id="claim-email-input" 
+              class="cta-input" 
+              placeholder="Introduce tu correo electrónico (ej. comandante@enroque.com)..." 
+              required
+            >
+            <button type="submit" id="btn-claim-submit" class="cta-submit-btn">
+              Obtener Mi Clave Gratuita
+            </button>
+          </form>
+
+          <div id="claim-error-box" style="display: none; margin-top: 16px; background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; border-radius: 8px; padding: 12px; color: #fca5a5; font-size: 0.9rem;"></div>
+
+          <!-- Claim Result Box (Displayed when code is delivered) -->
+          <div id="claim-result-box" class="claim-result-box" style="display: none;">
+            <div style="font-family: var(--font-pixel); font-size: 0.75rem; color: #6ee7b7; margin-bottom: 8px;">
+              🎉 ¡CLAVE DE ACCESO DESBLOQUEADA!
+            </div>
+            
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">
+              Tu clave exclusiva ha sido retirada permanentemente de la lista:
+            </p>
+
+            <div class="code-display-row">
+              <span id="display-promo-code" class="promo-code-text">-----------------------</span>
+              <button type="button" id="btn-copy-code" class="btn-copy-code" title="Copiar al portapapeles">
+                📋 Copiar
+              </button>
+            </div>
+
+            <!-- Direct Link to Play Store (Opens Play Store App with Code preloaded) -->
+            <a id="direct-playstore-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-direct-playstore">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186c-.36-.36-.61-.88-.61-1.48V3.294c0-.6.25-1.12.609-1.48zm11.604 11.604L18.15 15.15 5.568 22.42l9.645-8.998zm0-2.836L5.568 1.58 18.15 8.85l-2.937 2.732zm1.42 1.418l3.435-1.986c.92-.53.92-1.4 0-1.93l-3.435-1.987-1.42 1.42 1.42 1.419 1.42 1.419-1.42 1.665z"/>
+              </svg>
+              <span>CANJEAR Y DESCARGAR DIRECTO EN PLAY STORE</span>
+            </a>
+
+            <!-- Direct Store Listing Link -->
+            <div style="margin-top: 10px; text-align: center;">
+              <a id="direct-app-link" href="https://play.google.com/store/apps/details?id=com.nhcoders.roge_chest" target="_blank" rel="noopener noreferrer" style="color: var(--gold-light); font-size: 0.82rem; text-decoration: underline; opacity: 0.85;">
+                🔗 Abrir ficha directa de Dissonant Gambit (Roge_chest) en Google Play
+              </a>
+            </div>
+
+            <!-- Retry / Request Another Key Button if already used -->
+            <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(212, 175, 55, 0.25); text-align: center;">
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                ¿Google Play dice que esta clave ya fue canjeada o no está disponible?
+              </p>
+              <button type="button" id="btn-request-another-code" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 7px 16px; border-radius: 6px; font-family: var(--font-pixel); font-size: 0.7rem; cursor: pointer; transition: all 0.2s;">
+                ⚡ DESCARTAR Y ENTREGAR OTRA CLAVE NUEVA
+              </button>
+            </div>
+
+            <p class="code-security-notice" style="margin-top: 14px;">
+              🛡️ <em>Esta clave ha sido vinculada a tu correo y eliminada de nuestros registros para que nadie más pueda recibirla. Pulsa en el botón superior para instalar Dissonant Gambit en tu teléfono Android.</em>
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="site-footer">
+      <div class="site-content">
+        <div class="footer-top">
+          <div class="brand-wrapper">
+            <img src="assets/app_logo.jpg" alt="Logo" class="brand-crest">
+            <div class="brand-text-col">
+              <span class="brand-title">DISSONANT GAMBIT</span>
+              <span class="brand-subtitle">ROGE_CHEST • ATCHENDEV</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 20px; font-size: 0.88rem; flex-wrap: wrap;">
+            <a href="#historia" style="color: var(--text-secondary); text-decoration: none;">12 Heraldos</a>
+            <a href="#modos" style="color: var(--text-secondary); text-decoration: none;">8 Modos</a>
+            <a href="#multijugador" style="color: var(--text-secondary); text-decoration: none;">Multijugador</a>
+            <a href="#personalizacion" style="color: var(--text-secondary); text-decoration: none;">Personalización</a>
+            <a href="#acceso-anticipado" style="color: var(--gold-light); text-decoration: none; font-weight: 700;">Acceso Anticipado</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            © 2026 <strong>DISSONANT GAMBIT (Roge_chest)</strong>. Diseñado y Desarrollado por <strong>atchendev</strong> / <strong>NH Coders</strong>.
+          </div>
+          <div>
+            Estilo Pixel Art Retro Fantasía Oscura • Motor LibGDX & Stitch Design System.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-wrapper">
+          <img src="assets/app_logo.jpg" alt="Logo" class="brand-crest">
+          <div class="brand-text-col">
+            <span class="brand-title">DISSONANT GAMBIT</span>
+            <span class="brand-subtitle">ROGE_CHEST • ATCHENDEV</span>
+          </div>
+        </div>
+        <button id="mobile-drawer-close" class="mobile-drawer-close-btn" aria-label="Cerrar menú">✕</button>
+      </div>
+      <nav class="mobile-drawer-nav">
+        <a href="#hero" class="mobile-drawer-link"><span>🏰</span> El Enroque Muerto</a>
+        <a href="#historia" class="mobile-drawer-link"><span>⚔️</span> 12 Heraldos del Vacío</a>
+        <a href="#modos" class="mobile-drawer-link"><span>🏆</span> 8 Modos de Juego</a>
+        <a href="#multijugador" class="mobile-drawer-link"><span>🌐</span> Multijugador & Versus</a>
+        <a href="#personalizacion" class="mobile-drawer-link"><span>👑</span> Skins & Avatares</a>
+        <a href="#acceso-anticipado" class="mobile-drawer-link highlight"><span>🔑</span> Obtener Clave Gratuita</a>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <a href="#acceso-anticipado" class="btn-primary-hero mobile-drawer-cta">
+          <span>🔑</span> CANJEAR ACCESO GOOGLE PLAY
+        </a>
+      </div>
+    </div>
+    <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop"></div>
+
+  </div>
+
+  <!-- ====================================================================
+       FLOATING CONTROLS DOCK (CRT Scanlines & Ambient Audio)
+       ==================================================================== -->
+  <div class="floating-dock">
+    <button id="dock-crt-btn" class="dock-btn active" title="Alternar filtro retro CRT Scanlines" aria-label="CRT Scanlines">
+      📺
+    </button>
+    <button id="dock-sound-btn" class="dock-btn" title="Alternar música de fondo ambiental" aria-label="Música de fondo">
+      🔇
+    </button>
+  </div>
+
+  <script src="app.js?v=2.3"></script>
+</body>
+</html>
