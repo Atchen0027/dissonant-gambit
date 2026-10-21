@@ -191,10 +191,24 @@ const SOULS_DATA = [
 // --- 2. AUDIO & SOUNDBOARD MANAGER ---
 class SoundManager {
   constructor() {
-    this.bgm = new Audio('assets/audio/bgm_roadmap.ogg');
-    this.bgm.loop = true;
+    this.playlist = [
+      { name: 'Roadmap del Vacío', src: 'assets/audio/bgm_roadmap.ogg' },
+      { name: 'Profundidades Abisales', src: 'assets/audio/bgm_abyssal_depths.ogg' },
+      { name: 'Batalla Táctica', src: 'assets/audio/bgm_battle.ogg' },
+      { name: 'Última Resistencia', src: 'assets/audio/bgm_final_stand.ogg' },
+      { name: 'Marcha de las Sombras', src: 'assets/audio/bgm_shadow_march.ogg' },
+      { name: 'Duelo Sombrío', src: 'assets/audio/bgm_somber_battle.ogg' },
+      { name: 'Arpegio Tenebroso', src: 'assets/audio/bgm_shadow_arpeggio.ogg' },
+      { name: 'Santuario del Menú', src: 'assets/audio/bgm_menu.ogg' }
+    ];
+    this.currentTrackIndex = 0;
+    this.bgm = new Audio(this.playlist[0].src);
     this.bgm.volume = 0.35;
     this.isPlayingBgm = false;
+
+    this.bgm.addEventListener('ended', () => {
+      this.nextTrack();
+    });
 
     this.sfxPool = {
       move: new Audio('assets/audio/sfx_move.ogg'),
@@ -209,6 +223,17 @@ class SoundManager {
     Object.values(this.sfxPool).forEach(snd => snd.volume = 0.55);
 
     this.currentVoice = null;
+  }
+
+  nextTrack() {
+    this.currentTrackIndex = (this.currentTrackIndex + 1) % this.playlist.length;
+    const wasPlaying = this.isPlayingBgm;
+    this.bgm.pause();
+    this.bgm.src = this.playlist[this.currentTrackIndex].src;
+    if (wasPlaying) {
+      this.bgm.play().catch(e => console.log('BGM switch err:', e));
+    }
+    this.updateBgmUi();
   }
 
   toggleBgm() {

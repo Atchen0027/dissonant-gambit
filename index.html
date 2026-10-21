@@ -49,6 +49,7 @@
             <li><a href="#historia" class="nav-link"><span>⚔️</span> 12 Heraldos</a></li>
             <li><a href="#piezas" class="nav-link"><span>♟️</span> Piezas Disonantes</a></li>
             <li><a href="#modos" class="nav-link"><span>🏆</span> 8 Modos</a></li>
+            <li><a href="#recompensas" class="nav-link"><span>🎁</span> 180 Días</a></li>
             <li><a href="#multijugador" class="nav-link"><span>🌐</span> Multijugador</a></li>
             <li><a href="#personalizacion" class="nav-link"><span>👑</span> Skins & Avatares</a></li>
             <li><a href="#acceso-anticipado" class="nav-link" style="color: var(--gold-light);"><span>🔑</span> Acceso Anticipado</a></li>
@@ -95,12 +96,12 @@
             </h1>
 
             <p class="hero-description">
-              El tablero clásico de 64 casillas ha colapsado. Adéntrate en el misterio del Enroque Muerto: enfréntate a <strong>12 Heraldos implacables</strong> a lo largo de <strong>12 capítulos de campaña</strong>, domina <strong>8 modos de juego</strong>, compite online o cara a cara en el mismo teléfono, y <strong>alcanza hasta 4 finales diferentes</strong> según la maestría de tus decisiones tácticas.
+              El tablero clásico de 64 casillas ha colapsado. Adéntrate en el misterio del Enroque Muerto: enfréntate a <strong>12 Heraldos implacables</strong> en <strong>12 capítulos de campaña</strong>, domina <strong>8 modos de juego</strong>, compite online o en el mismo teléfono, reclama las recompensas diarias de la <strong>Baraja del Destino (180 días)</strong> y consigue la <strong>skin exclusiva «Rey de Pruebas»</strong> por unirte al Acceso Anticipado.
             </p>
 
             <div class="hero-cta-group">
               <a href="#acceso-anticipado" class="btn-primary-hero" id="hero-cta-preregister">
-                <span>🔑</span> Únete ya al Acceso Anticipado Gratis
+                <span>👑</span> Únete y Consigue la Skin Exclusiva
               </a>
 
               <a href="#historia" class="btn-secondary-hero" id="hero-cta-story">
@@ -118,8 +119,8 @@
                 <span class="stat-label">Modos de Juego</span>
               </div>
               <div class="hero-stat-item">
-                <span class="stat-value">3</span>
-                <span class="stat-label">Vías Multijugador</span>
+                <span class="stat-value">180d</span>
+                <span class="stat-label">Baraja del Destino</span>
               </div>
               <div class="hero-stat-item">
                 <span class="stat-value">50+</span>
@@ -608,6 +609,106 @@
       </section>
 
       <!-- ====================================================================
+           MODULE 3.5: BARAJA DEL DESTINO • CALENDARIO TÁCTICO DE 180 DÍAS
+           ==================================================================== -->
+      <section id="recompensas" class="rewards-section">
+        <div class="section-header">
+          <span class="section-tag">TAROT ARCANO // 6 MESES DE PROGRESIÓN GARANTIZADA</span>
+          <h2 class="section-title">LA BARAJA DEL DESTINO (180 DÍAS)</h2>
+          <p class="section-desc">
+            Cada día que despiertas en el purgatorio del Enroque Muerto, el Soberano revela una carta del destino. Reclama oro, fragmentos de almas, cofres arcanos y reliquias en una senda táctica de 6 meses ininterrumpidos.
+          </p>
+        </div>
+
+        <div class="rewards-calendar-box">
+          <div class="rewards-banner-header">
+            <div class="rewards-icon-emblem">
+              <img src="assets/rewards/reward_chest_bronze.webp" alt="Cofre de Recompensas Diarias" class="rewards-chest-glow-img">
+            </div>
+            <div class="rewards-header-text">
+              <span class="rewards-cycle-tag">★ SISTEMA DE PROGRESIÓN DIARIA v0.2.4 ★</span>
+              <h3 class="rewards-box-title">Cartas en Perspectiva 3D con Efecto Respiración</h3>
+              <p class="rewards-box-desc">
+                Sincronización rúnica en el menú principal: el cofre gótico pulsa y emite destellos dorados si tienes una carta pendiente hoy. Las cartas superadas reposan en escala de grises y las futuras aguardan en bruma traslúcida.
+              </p>
+            </div>
+          </div>
+
+          <!-- Cards Preview Grid -->
+          <div class="rewards-cards-carousel">
+            
+            <!-- Card 1: Reclamada -->
+            <div class="reward-tarot-card claimed">
+              <span class="reward-card-day">DÍA 1</span>
+              <div class="reward-card-visual">
+                <img src="assets/rewards/reward_gold_small.webp" alt="Oro Inicial" class="reward-card-img">
+              </div>
+              <h4 class="reward-card-title">150 ORO</h4>
+              <span class="reward-status-pill claimed">✓ RECLAMADA</span>
+            </div>
+
+            <!-- Card 2: Reclamada -->
+            <div class="reward-tarot-card claimed">
+              <span class="reward-card-day">DÍA 2</span>
+              <div class="reward-card-visual">
+                <img src="assets/rewards/reward_gold_medium.webp" alt="Oro Táctico" class="reward-card-img">
+              </div>
+              <h4 class="reward-card-title">300 ORO</h4>
+              <span class="reward-status-pill claimed">✓ RECLAMADA</span>
+            </div>
+
+            <!-- Card 3: Activa Hoy -->
+            <div class="reward-tarot-card today-active">
+              <div class="reward-glow-ring"></div>
+              <span class="reward-card-day active-day">DÍA 3 • ¡HOY!</span>
+              <div class="reward-card-visual pulse-anim">
+                <img src="assets/rewards/reward_chest_bronze.webp" alt="Cofre Místico" class="reward-card-img">
+              </div>
+              <h4 class="reward-card-title gold-shimmer">COFRE BRONCE</h4>
+              <span class="reward-status-pill available">⚡ LISTO PARA ABRIR</span>
+            </div>
+
+            <!-- Card 4: Bloqueada Siguiente -->
+            <div class="reward-tarot-card locked">
+              <span class="reward-card-day">DÍA 4</span>
+              <div class="reward-card-visual">
+                <img src="assets/rewards/reward_gold_large.webp" alt="Gran Bolsa de Oro" class="reward-card-img">
+              </div>
+              <h4 class="reward-card-title">500 ORO</h4>
+              <span class="reward-status-pill locked">🔒 MAÑANA</span>
+            </div>
+
+            <!-- Card 7: Hito Semanal -->
+            <div class="reward-tarot-card milestone">
+              <span class="reward-card-day">DÍA 7 • HITO</span>
+              <div class="reward-card-visual">
+                <img src="assets/rewards/reward_dragon_trophy.webp" alt="Trofeo Dracónico" class="reward-card-img">
+              </div>
+              <h4 class="reward-card-title" style="color: var(--gold-light);">PIEZA RARA</h4>
+              <span class="reward-status-pill milestone-pill">★ RECOMPENSA MAYOR</span>
+            </div>
+
+          </div>
+
+          <!-- Feature Bullets Strip -->
+          <div class="rewards-features-footer">
+            <div class="reward-feature-pill">
+              <span>⏰</span> Enfriamiento inteligente de 20h
+            </div>
+            <div class="reward-feature-pill">
+              <span>🔔</span> Notificaciones locales programadas
+            </div>
+            <div class="reward-feature-pill">
+              <span>🛡️</span> Blindaje anti-doble reclamo
+            </div>
+            <div class="reward-feature-pill">
+              <span>👑</span> Ciclo completo de 180 días (6 meses)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
            MODULE 4: MULTIJUGADOR TOTAL (HUMANOS, IA Y LOCAL EN EL MISMO MÓVIL)
            ==================================================================== -->
       <section id="multijugador" class="multiplayer-section">
@@ -815,6 +916,57 @@
             </div>
           </div>
 
+          <!-- Showcase Especial: Skin Exclusiva Early Access "Rey de Pruebas" -->
+          <div class="exclusive-skin-showcase-box">
+            <div class="exclusive-skin-badge">
+              <span>⚠️</span> RECOMPENSA EXCLUSIVA • ACCESO ANTICIPADO <span>⚠️</span>
+            </div>
+            
+            <div class="exclusive-skin-content-grid">
+              <div class="exclusive-skin-visual-col">
+                <div class="exclusive-skin-halo"></div>
+                <img 
+                  src="assets/pieces/king_crash_dummy_white.webp" 
+                  alt="Aspecto Exclusivo Rey de Pruebas" 
+                  class="exclusive-skin-img"
+                  loading="lazy"
+                >
+                <div class="exclusive-skin-tag">EDICIÓN LIMITADA PIONEROS</div>
+              </div>
+
+              <div class="exclusive-skin-info-col">
+                <span class="exclusive-skin-pretitle">PIEZA REY // ASPECTO LEGENDARIO CERRADO</span>
+                <h3 class="exclusive-skin-name">REY DE PRUEBAS</h3>
+                <span class="exclusive-skin-subtitle">«Monarca del Test de Impacto»</span>
+
+                <p class="exclusive-skin-description">
+                  Forjado con patrones de advertencia industrial, articulaciones de choque reforzadas y una corona imperial de oro templado. Este aspecto ceremonial fue creado para distinguir a los comandantes que pusieron a prueba las primeras versiones de <em>Dissonant Gambit</em> y resistieron los impactos de la beta cerrada.
+                </p>
+
+                <div class="exclusive-skin-specs">
+                  <div class="skin-spec-item">
+                    <span class="spec-label">COSTE EN TIENDA</span>
+                    <span class="spec-value free-gold">0 ORO • 100% GRATIS</span>
+                  </div>
+                  <div class="skin-spec-item">
+                    <span class="spec-label">DISPONIBILIDAD</span>
+                    <span class="spec-value highlight">EXCLUSIVO EARLY ACCESS</span>
+                  </div>
+                  <div class="skin-spec-item">
+                    <span class="spec-label">ESTILO EN COMBATE</span>
+                    <span class="spec-value">FULL-BODY 2.5D & MEDALLÓN</span>
+                  </div>
+                </div>
+
+                <div class="exclusive-skin-actions">
+                  <a href="#acceso-anticipado" class="btn-primary-hero" style="font-size: 0.88rem; padding: 12px 24px;">
+                    <span>👑</span> RECLAMAR CLAVE Y SKIN AHORA
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -833,8 +985,20 @@
           </h2>
 
           <p class="early-access-desc">
-            Introduce tu correo electrónico para recibir de forma inmediata una clave oficial de acceso anticipado en Google Play. Al pulsar el enlace, se abrirá la tienda con el código ya aplicado para que instales la app de inmediato.
+            Introduce tu correo para recibir al instante una clave oficial de Google Play con el juego completo desbloqueado y el <strong>Aspecto Exclusivo «Rey de Pruebas»</strong> garantizado en tu cuenta por ser jugador de la fase beta.
           </p>
+
+          <!-- Banner de la Skin incluida en Early Access -->
+          <div class="early-access-skin-incentive">
+            <div class="incentive-img-wrap">
+              <img src="assets/pieces/king_crash_dummy_white.webp" alt="Skin Rey de Pruebas" class="incentive-piece-img">
+            </div>
+            <div class="incentive-text-wrap">
+              <span class="incentive-badge">RECOMPENSA INCLUIDA AUTOMÁTICAMENTE</span>
+              <h4 class="incentive-title">Aspecto Exclusivo «Rey de Pruebas» (Valor: 0 € • Invaluable)</h4>
+              <p class="incentive-desc">Corona de oro, marcas de test de impacto y armadura blindada. Solo disponible para quienes jueguen en esta fase.</p>
+            </div>
+          </div>
 
           <div class="counter-pill">
             <span>⚡</span> <span id="keys-counter">10</span> claves disponibles en la forja
@@ -871,6 +1035,15 @@
               <button type="button" id="btn-copy-code" class="btn-copy-code" title="Copiar al portapapeles">
                 📋 Copiar
               </button>
+            </div>
+
+            <!-- Skin Unlocked notification in modal -->
+            <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid var(--gold-primary); border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; text-align: left;">
+              <img src="assets/pieces/king_crash_dummy_white.webp" alt="Skin" style="width: 38px; height: 38px; object-fit: contain; image-rendering: pixelated; flex-shrink: 0;">
+              <div>
+                <span style="font-family: var(--font-pixel); font-size: 0.65rem; color: var(--gold-light); display: block;">👑 ASPECTO EXCLUSIVO VINCULADO</span>
+                <span style="font-size: 0.8rem; color: #fff;">Tu cuenta recibirá el aspecto <strong>«Rey de Pruebas»</strong> en cuanto inicies el juego.</span>
+              </div>
             </div>
 
             <!-- Direct Link to Play Store (Opens Play Store App with Code preloaded) -->
@@ -959,6 +1132,7 @@
         <a href="#historia" class="mobile-drawer-link"><span>⚔️</span> 12 Heraldos del Vacío</a>
         <a href="#piezas" class="mobile-drawer-link"><span>♟️</span> Piezas Disonantes</a>
         <a href="#modos" class="mobile-drawer-link"><span>🏆</span> 8 Modos de Juego</a>
+        <a href="#recompensas" class="mobile-drawer-link"><span>🎁</span> 180 Días de Recompensas</a>
         <a href="#multijugador" class="mobile-drawer-link"><span>🌐</span> Multijugador & Versus</a>
         <a href="#personalizacion" class="mobile-drawer-link"><span>👑</span> Skins & Avatares</a>
         <a href="#acceso-anticipado" class="mobile-drawer-link highlight"><span>🔑</span> Obtener Clave Gratuita</a>

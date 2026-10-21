@@ -3815,3 +3815,478 @@ section {
   }
 }
 
+/* ==========================================================================
+   MODULE 3.5: BARAJA DEL DESTINO (180 DÍAS) & RECOMPENSAS
+   ========================================================================== */
+
+.rewards-section {
+  position: relative;
+  padding: 80px 0;
+  background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+              rgba(7, 10, 22, 0.96);
+  border-top: 1px solid rgba(245, 158, 11, 0.25);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.rewards-calendar-box {
+  background: linear-gradient(145deg, rgba(16, 22, 44, 0.95) 0%, rgba(8, 11, 24, 0.98) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.15);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.rewards-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rewards-icon-emblem {
+  width: 76px;
+  height: 76px;
+  min-width: 76px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(6, 8, 18, 0.9) 70%);
+  border: 1.5px solid var(--gold-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.rewards-chest-glow-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: chestGlowBreathing 3s ease-in-out infinite alternate;
+}
+
+@keyframes chestGlowBreathing {
+  0% { transform: scale(0.95); filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.5)); }
+  100% { transform: scale(1.08); filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.9)); }
+}
+
+.rewards-cycle-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.rewards-box-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.rewards-box-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 820px;
+}
+
+.rewards-cards-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.reward-tarot-card {
+  background: rgba(12, 17, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.reward-tarot-card:hover {
+  transform: translateY(-4px);
+}
+
+.reward-tarot-card.claimed {
+  opacity: 0.55;
+  filter: grayscale(85%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.reward-tarot-card.today-active {
+  background: linear-gradient(135deg, rgba(30, 24, 52, 0.95) 0%, rgba(18, 16, 38, 0.98) 100%);
+  border: 2px solid var(--gold-primary);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+  transform: scale(1.04);
+}
+
+.reward-tarot-card.locked {
+  opacity: 0.45;
+  border-style: dashed;
+}
+
+.reward-tarot-card.milestone {
+  border-color: var(--gold-light);
+  background: linear-gradient(145deg, rgba(35, 25, 15, 0.8) 0%, rgba(12, 16, 32, 0.9) 100%);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+}
+
+.reward-card-day {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.reward-card-day.active-day {
+  color: var(--gold-light);
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--gold-glow);
+}
+
+.reward-card-visual {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.reward-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+}
+
+.reward-card-title {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.reward-status-pill {
+  font-family: var(--font-pixel);
+  font-size: 0.52rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.reward-status-pill.claimed {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+.reward-status-pill.available {
+  background: rgba(245, 158, 11, 0.25);
+  border: 1px solid var(--gold-primary);
+  color: var(--gold-light);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.reward-status-pill.locked {
+  background: rgba(255, 255, 255, 0.06);
+  color: #64748b;
+}
+
+.reward-status-pill.milestone-pill {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+.rewards-features-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reward-feature-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 25, 53, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   SHOWCASE ESPECTACULAR: SKIN EXCLUSIVA "REY DE PRUEBAS"
+   ========================================================================== */
+
+.exclusive-skin-showcase-box {
+  margin-top: 40px;
+  background: linear-gradient(135deg, rgba(28, 20, 10, 0.95) 0%, rgba(14, 12, 26, 0.98) 100%);
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(245, 158, 11, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.exclusive-skin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid var(--gold-primary);
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-family: var(--font-pixel);
+  font-size: 0.68rem;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.exclusive-skin-content-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.exclusive-skin-visual-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.exclusive-skin-halo {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(220, 38, 38, 0.15) 60%, transparent 80%);
+  filter: blur(20px);
+  z-index: 1;
+}
+
+.exclusive-skin-img {
+  position: relative;
+  z-index: 2;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.9));
+  transition: transform 0.3s ease;
+  animation: floatSkinHero 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatSkinHero {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-8px) scale(1.03); }
+}
+
+.exclusive-skin-tag {
+  position: relative;
+  z-index: 3;
+  margin-top: 10px;
+  font-family: var(--font-pixel);
+  font-size: 0.58rem;
+  color: #050811;
+  background: var(--gold-primary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.exclusive-skin-info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.exclusive-skin-pretitle {
+  font-family: var(--font-pixel);
+  font-size: 0.62rem;
+  color: var(--gold-light);
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.exclusive-skin-name {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+  text-shadow: 0 0 20px var(--gold-glow);
+}
+
+.exclusive-skin-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #fde68a;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.exclusive-skin-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.exclusive-skin-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.skin-spec-item {
+  background: rgba(6, 9, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.spec-label {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 0.52rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.spec-value {
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.spec-value.free-gold {
+  color: #6ee7b7;
+  text-shadow: 0 0 8px rgba(110, 231, 183, 0.4);
+}
+
+.spec-value.highlight {
+  color: var(--gold-light);
+}
+
+/* Incentive Banner in Early Access Section */
+.early-access-skin-incentive {
+  background: rgba(20, 15, 8, 0.8);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 680px;
+  margin: 0 auto 24px auto;
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(245, 158, 11, 0.15);
+}
+
+.incentive-img-wrap {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.incentive-piece-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
+}
+
+.incentive-text-wrap {
+  flex: 1;
+}
+
+.incentive-badge {
+  font-family: var(--font-pixel);
+  font-size: 0.56rem;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.incentive-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.incentive-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .exclusive-skin-content-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .exclusive-skin-visual-col {
+    margin: 0 auto;
+  }
+  .exclusive-skin-specs {
+    grid-template-columns: 1fr;
+  }
+  .early-access-skin-incentive {
+    flex-direction: column;
+    text-align: center;
+  }
+  .rewards-banner-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .rewards-cards-carousel {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
