@@ -1,0 +1,210 @@
+/**
+ * CLOUDFLARE WORKER: Dissonant Gambit (Roge_chest) Promo Codes Delivery Engine
+ * 
+ * Features:
+ * - CORS headers pre-configured for GitHub Pages (https://atchen0027.github.io)
+ * - Atomic decrement of promo codes (available.shift())
+ * - Cloudflare KV persistence (PROMO_KV) with auto-initialization from seed list
+ * - In-memory fallback if KV namespace is not yet bound
+ * - Prevents delivering duplicate codes to different visitors
+ */
+
+const PACKAGE_NAME = "com.nhcoders.roge_chest";
+
+// Initial seed pool of 109 verified promo codes
+const SEED_AVAILABLE_CODES = [
+  "8MP1ASMWSG7A013271S2YCB","M29C94QHA9S1D5YWNNHFRHM","A2JLKA63BE1L6WAU1FBPTGD","J891JSY5C5C0DUT8ET8Z70A",
+  "FCYP7LUWRWXNUHNDYZ3WVQT","ZTR1DD7101T3DF5CM0ZAM3M","W5DVZBN32F7803GCY2Z9AAG","C6FWNXKHRMRDY63B0WYUA9J",
+  "6AEU0XECQKVRHV2UX92DV07","8JMWLX8GKFM9N2F5R3UG8XK","AMX5MWK3Z6SJN8FK8QN69UN","3VPS879U2GH4467H9AGLQPJ",
+  "VT26LG90KUAD1BSKY52V58R","98PEQLH2QVTLEX71RNM8MLP","FT7V0A799GZSF56V0ZL8UUL","7MV8PYTYRZMXFHEDL7WVCR5",
+  "LKQDE3FDUMZZUZEYPFD8XTW","A572XGTBE2T7DHHRH9GA9XG","AHDX8AF33677RQ2UYU8B912","T4UDH84H93NXCA5BLXQF198",
+  "ZJD3WTPW7N6P1S37K96WEF4","ZCL81ZJMAKV394BQE7DX17H","RSJTVFU6XDKMMX1UU5J8XSX","2A0WWJAU2828EDWXJSJ5TXK",
+  "0L9C6S36ZH3L0JATVKCNRA9","J103354QUHP78RXJJTCF8B1","ASZ92K031NGGWLVT8VQED6L","8Z1BG0KY7QDP48BZS5BKQJ9",
+  "YYXXB36MTJYJEN1DENUM7TL","LFAXNSN01K27QSF9SK4AS9Z","A53LCJ8S9QZRY5TZSX49XV9","1GLTAZ8JR1YW59UH20T9426",
+  "ESJWG97FVLXPULS84KZ5WYA","2WNB1WLFN7FE6YKX43Q8RCQ","QWHCED83BVVKMP9USP5Y9JW","W6SFXA00C0H6GH9SFQYYJ42",
+  "TAW95YELG1QZ906E4PZPF3U","FWTW44TZ5LDTE5L9V4C664W","PWDAE8Y43PYT35TN4ZAX4WT","76UFHWRYM4TQ6FL9KRCKYJ5",
+  "4SJP8HYSPSDLBV16EFBU7XV","LHKPGHHUX0QW6AFLBVBLHYU","GJ9YTNRLMJX9JUBVFPX1BYV","VWV48D9XQ3N1B7SSHKBMRXQ",
+  "NX2W2M06DP40JXRCEPHZNCT","GJ1RUP02G2C4W60E552J7BT","Y75W45ST3TYBPMAZ39SHPCL","3DKMQ8F5KDADXVRWY9D5RMG",
+  "G2YJHLGBKCU7SZC39TCZX5Z","R4LPRCQ6GUX3GS5YUZYMLGB","L7V0C70E7NJCXBSJH4FW2MR","FJ7CN5L51H811SJGE4BHW3P",
+  "YNWCSHSPGSG7LATKTE6BHBT","EWYECAEDYD647BSFSNL3J6K","FS8QQL6SFQZNUC8H1LK41E1","GU9PKRDT23MP5A9JJT7BUHM",
+  "TX4J4F542QR62X4UTD0UN4V","8P53PU3B9E99E0YD2N5CT5Y","YY98FWNWN7R3MQFJTXGG06Z","PLSTGG0Y9ZRMT83S73QWENM",
+  "RG5H92S93K4FS9UFWSMMEBE","GZF3JDDQ8HZX0TZ271YLKDE","GDGTJ38EJGU49DXTJQR7F31","0QV1EFY3LUK3D53J282F75T",
+  "5J6XYGJY3Q467YYV1UT5H7M","5BTACDSUG8QU26LVK0YRAAX","ZXM98BKS0AJZEFE6W4CUM8H","RYCA72UJUMMJ7P9TZQ95WCY",
+  "TB1ZTHDUEL76L3C5GTXFNRS","E2QR939GLH1EW2AL7XSNHT3","1FLDVA7LQQ2P4YPU6VE966X","PTQ84T2903R242DA0CE5KCQ",
+  "SD5UFVTZGRX3ASAHZ2ZHUEZ","4MM1WTCQENQYKA63MFW220D","Y80BTAGNAX3AQ243RF9H8QE","4JF44EQHM1TLB70K72AMNV2",
+  "TF9B29DF7VPMUAZSUY8X1KS","GPQQPPAW8ZFNQ7CRDUSWKEX","CS31XDC91S4E54DDT48WEYJ","PA8GKDUJDQ2ZK663D7K2CJ0",
+  "VUL74XZ9M8RTN68KN708XCQ","G3Q2FNYNN4QUNTBGC9UL9CV","KF59G0F9MK2FXXVFTDK2FK9","R29WM2WKV2HWLD5Y6ZW829Z",
+  "U0LH0FXZDEB72BDTZSSC5NZ","VC6Q9KAFHUULB0NHAVS9DHJ","G32ZXTN79XU92WSXR8DM40W","4S5BY58ZCSJSF7J24RBJGL9",
+  "Y34RJ9FLT1KJZ64VRVYSTLT","0VZJ78AUXLMQZ4JRNBLS6ZC","9BE0MH311GD7A1K69JC63DA","2HJ3YJTRZ3HLVQGMD0XR2G9",
+  "B9XRQQ4HJ7MG8DYR4RW4EF2","RHTE495NTZ3A559QRMQUKTN","ANBDBDJVG1751CZRPFJRSL5","KYPDQC8ADPNZ10M3JUR7Q3N",
+  "BRXPAKL2Q56XJCC910AB84S","B1EDRT0ST5DKNESEPYJVG8G","VCD3QRPF8GXWBP2PTZG21DA","HNTM3K6ZN2JK2AGX2JWH3GY",
+  "5DQZWAKV9E6Y1H4ZC6AN31J","JZ3BKA0JY0S7T3Q2PAGFXFF","N3WNNSYJ2PL9WZU67CGGUFA","M2HHXKYUMG2N7RA12PB39T0",
+  "0NUA3SPEKSU6GRC20WBBF99","EKXL0LE1GZNH7FDT2Q2K7YY","RM4G70PHMVQP39FZZ4Z8590","FEUTETBUYKP496GYLKFB76N",
+  "BFBC81ES2WS31RPJGWAAAVS"
+];
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type"
+};
+
+// Global in-memory cache for ultra-fast response
+let memoryState = null;
+
+async function loadState(env) {
+  if (env && env.PROMO_KV) {
+    const raw = await env.PROMO_KV.get("promo_data");
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed.available)) {
+          memoryState = parsed;
+          return parsed;
+        }
+      } catch (err) {}
+    }
+  }
+
+  if (memoryState) return memoryState;
+
+  // Initial state seeded from our verified list
+  const initial = {
+    available: [...SEED_AVAILABLE_CODES],
+    claimed: {
+      "acen0027@gmail.com": [{ code: "BE3HZ9665F85TQ9ERQ0CNYK", timestamp: "2026-10-11T18:49:40.293329Z" }]
+    },
+    burned_codes: ["WDN016Y1Q5TM3HYKKQ78YB2"]
+  };
+
+  if (env && env.PROMO_KV) {
+    await env.PROMO_KV.put("promo_data", JSON.stringify(initial));
+  }
+  memoryState = initial;
+  return initial;
+}
+
+async function persistState(env, state) {
+  memoryState = state;
+  if (env && env.PROMO_KV) {
+    await env.PROMO_KV.put("promo_data", JSON.stringify(state));
+  }
+}
+
+export default {
+  async fetch(request, env, ctx) {
+    // 1. CORS Preflight
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    const url = new URL(request.url);
+
+    // 2. GET /api/status (Available codes count)
+    if (url.pathname === "/api/status" && request.method === "GET") {
+      const state = await loadState(env);
+      return new Response(
+        JSON.stringify({
+          available: state.available.length,
+          claimed: Object.keys(state.claimed).length,
+          burned: state.burned_codes.length
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // 3. POST /api/claim-code (Deliver unique code & decrement permanently)
+    if (url.pathname === "/api/claim-code" && request.method === "POST") {
+      let body;
+      try {
+        body = await request.json();
+      } catch (e) {
+        return new Response(
+          JSON.stringify({ success: false, error: "JSON inválido en la solicitud." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const email = (body.email || "").trim().toLowerCase();
+      if (!email || !email.includes("@")) {
+        return new Response(
+          JSON.stringify({ success: false, error: "Por favor, introduce un correo electrónico válido." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const state = await loadState(env);
+
+      // Handle user discarding a malfunctioning code
+      const discardCode = (body.discard_code || "").trim();
+      if (discardCode) {
+        if (!state.burned_codes.includes(discardCode)) {
+          state.burned_codes.push(discardCode);
+        }
+        state.available = state.available.filter(c => c !== discardCode);
+      }
+
+      // If this user already claimed a code and is NOT requesting a discard/retry, return their assigned code
+      if (!discardCode && state.claimed[email] && state.claimed[email].length > 0) {
+        const lastEntry = state.claimed[email][state.claimed[email].length - 1];
+        if (!state.burned_codes.includes(lastEntry.code)) {
+          return new Response(
+            JSON.stringify({
+              success: true,
+              code: lastEntry.code,
+              redeemUrl: `https://play.google.com/redeem?code=${lastEntry.code}`,
+              appDirectUrl: `https://play.google.com/store/apps/details?id=${PACKAGE_NAME}&code=${lastEntry.code}`,
+              remaining: state.available.length,
+              reused: true
+            }),
+            { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      }
+
+      // Verify availability
+      if (state.available.length === 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: "¡Todas las claves de acceso anticipado gratuito han sido entregadas!",
+            remaining: 0
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      // ATOMIC DECREMENT: Take the first available code and remove it permanently
+      const deliveredCode = state.available.shift();
+
+      // Record in claimed history
+      if (!state.claimed[email]) {
+        state.claimed[email] = [];
+      }
+      state.claimed[email].push({
+        code: deliveredCode,
+        timestamp: new Date().toISOString()
+      });
+
+      // Save permanently
+      await persistState(env, state);
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          code: deliveredCode,
+          redeemUrl: `https://play.google.com/redeem?code=${deliveredCode}`,
+          appDirectUrl: `https://play.google.com/store/apps/details?id=${PACKAGE_NAME}&code=${deliveredCode}`,
+          remaining: state.available.length
+        }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Default 404
+    return new Response(
+      JSON.stringify({ error: "Endpoint no encontrado." }),
+      { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+};

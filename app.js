@@ -769,7 +769,9 @@ function initClaimEarlyAccessForm() {
 
     let claimedCode = localStorage.getItem('dg_user_code');
     if (!claimedCode || discardCurrent || burned.includes(claimedCode)) {
-      claimedCode = available[0];
+      // Entregar de forma pseudo-aleatoria del pool libre para evitar colisión fija
+      const randomIndex = Math.floor(Math.random() * available.length);
+      claimedCode = available[randomIndex];
       localStorage.setItem('dg_user_code', claimedCode);
     }
 
@@ -783,8 +785,12 @@ function initClaimEarlyAccessForm() {
     };
   }
 
-  // Fetch initial status from server (falls back to static on GitHub Pages)
-  fetch('/api/status')
+  // Cloudflare Worker API URL (Configurable vía window.CLOUDFLARE_WORKER_URL o fallback directo)
+  const API_BASE_URL = (window.CLOUDFLARE_WORKER_URL || '').replace(/\/$/, '');
+
+  // Fetch initial status from server or Cloudflare Worker (falls back to static on GitHub Pages)
+  const statusUrl = API_BASE_URL ? `${API_BASE_URL}/api/status` : '/api/status';
+  fetch(statusUrl)
     .then(r => {
       if (!r.ok) throw new Error('Static host');
       return r.json();
@@ -848,7 +854,8 @@ function initClaimEarlyAccessForm() {
     try {
       let data;
       try {
-        const res = await fetch('/api/claim-code', {
+        const claimUrl = API_BASE_URL ? `${API_BASE_URL}/api/claim-code` : '/api/claim-code';
+        const res = await fetch(claimUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)

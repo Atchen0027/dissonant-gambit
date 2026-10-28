@@ -1,0 +1,11 @@
+name = "dissonant-gambit-promo"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# KV Namespace binding (Optional, but recommended for persistent cross-region storage)
+# To create and bind:
+# 1. npx wrangler kv:namespace create PROMO_KV
+# 2. Paste the resulting id below:
+# [[kv_namespaces]]
+# binding = "PROMO_KV"
+# id = "YOUR_KV_NAMESPACE_ID"
