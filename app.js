@@ -721,6 +721,7 @@ function initCrtToggle() {
 // --- 9. EARLY ACCESS PROMO CODE CLAIM FORM ---
 function initClaimEarlyAccessForm() {
   const form = document.getElementById('claim-form');
+  if (!form) return;
   const emailInput = document.getElementById('claim-email-input');
   const submitBtn = document.getElementById('btn-claim-submit');
   const counterEl = document.getElementById('keys-counter');
